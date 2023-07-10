@@ -9,21 +9,17 @@ DELETE me permiten eliminar un elemento
 */ 
 export const iniciarSesion = async (usuario)=>{
     try{
-        const respuesta = await fetch(URL_usuario);
-        const listausuarios = await respuesta.json();
-        const usuarioBuscado = listausuarios.find((itemUsuario)=> itemUsuario.email === usuario.email);
-        if(usuarioBuscado){
-            // el mail era correcto
-            if(usuarioBuscado.password === usuario.password){
-                return usuarioBuscado;
-            }else{
-                console.log('password incorrecto');
-                return null
-            }
+        const respuesta = await fetch(URL_usuario+'apicafe/auth/login', {
+            //method:'POST', headers:{"Content-Type": "application-json"},body: JSON.stringify({...usuario, nombreUsuario:''})
+            method:'POST',
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({...usuario, nombreUsuario:''})
+        });
+        if(respuesta.status == 200){
+            const resp = await respuesta.json();
+            return resp;
         }else{
-            console.log('el mail no existe');
-            //el mail no existe
-            return null
+            return null;
         }
     }catch(error){
        console.log(error); 
