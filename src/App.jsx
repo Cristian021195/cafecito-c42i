@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import RutasProtegidas from "./components/routes/RutasProtegidas";
 import RutasAdministrador from "./components/routes/RutasAdministrador";
+import RutasUsuario from "./components/routes/RutasUsuario";
 
 function App() {
   const usuarioSessionStorage = JSON.parse(sessionStorage.getItem('usuario')) || {}
@@ -33,6 +34,14 @@ function App() {
           element={
             <RutasProtegidas>
               <RutasAdministrador></RutasAdministrador>
+            </RutasProtegidas>
+          }
+        ></Route>
+        <Route
+          path="/me/*"
+          element={
+            <RutasProtegidas>
+              <RutasUsuario></RutasUsuario>
             </RutasProtegidas>
           }
         ></Route>

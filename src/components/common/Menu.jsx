@@ -1,6 +1,7 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import {Link, NavLink, useNavigate} from 'react-router-dom'
 
+// eslint-disable-next-line react/prop-types
 const Menu = ({usuarioLogueado, setUsuarioLogueado}) => {
   const navegacion = useNavigate();
 
@@ -18,7 +19,9 @@ const Menu = ({usuarioLogueado, setUsuarioLogueado}) => {
           <Nav className="ms-auto">
             <NavLink end className='nav-item nav-link' to='/'>Inicio</NavLink>
             <NavLink end className='nav-item nav-link' to='/registro'>Registro</NavLink>
+            <NavLink end className='nav-item nav-link' to='/me/notas'>Notas</NavLink>
             {
+              // eslint-disable-next-line react/prop-types
               (usuarioLogueado.nombreUsuario)?
               <>
               <NavLink end className='nav-item nav-link' to='/administrador'>Administrador</NavLink>
